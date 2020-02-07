@@ -5,7 +5,6 @@ import classes from './SideDrawer.module.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Auxiliary from '../../../hoc/Auxiliary';
 
-
 const sideDrawer = (props) => {
     
     let attachedClasses = [classes.SideDrawer, classes.Close];
@@ -19,7 +18,7 @@ const sideDrawer = (props) => {
             <div className={attachedClasses.join(' ')}>
                 <div className={classes.Logo}>
                     <Logo/>
-                </div>
+                </div> 
                 <nav>
                     <NavigationItems /> 
                 </nav>
