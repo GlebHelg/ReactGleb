@@ -87,16 +87,27 @@ class BurgerBuilder extends Component{
         this.setState({purchasing: false});
     }
 
+    sleepFor( sleepDuration ){
+        var now = new Date().getTime();
+        while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+    }
+    
     purchaseContinueHandler = () => {
-        this.state.loading = true;
+
+        this.setState({loading: true});
         const order = {
             name: "Gleb Helg",
             game: "Rocket League"
         };
+        console.log('This state loading: ', this.state.loading);
+        //this.sleepFor(2000);
         axios_orders.post('/orders.json', order)
-                    .then(response => console.log(response));
+                    .then(response => {
+                        console.log('[BurgerBuilder] response:', response);
+                        this.setState({loading: false, purchasing: false});
+                    })
+                    .catch(error => console.log('[BurgerBuilder] error:',error));
     }
-
     
     render () {
         const disabledInfo = {
