@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -96,6 +96,7 @@ class BurgerBuilder extends Component{
 
         this.setState({loading: true});
         const order = {
+            ingredients: this.state.ingredients,
             name: "Gleb Helg",
             game: "Rocket League"
         };
@@ -106,7 +107,10 @@ class BurgerBuilder extends Component{
                         console.log('[BurgerBuilder] response:', response);
                         this.setState({loading: false, purchasing: false});
                     })
-                    .catch(error => console.log('[BurgerBuilder] error:',error));
+                    .catch(error => {
+                        console.log('[BurgerBuilder] error:',error);
+                        this.setState({loading: false, purchasing: false});
+                    });
     }
     
     render () {
